@@ -14,7 +14,6 @@ namespace Yafet_Flores_20251900155_ConexionAPI.AppServices
 
         public dogsServices()
         {
-            // La URL debe ser la del servidor de la API, no la de la documentación
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri("https://dogapi.dog/api/v1/");
         }
@@ -23,7 +22,6 @@ namespace Yafet_Flores_20251900155_ConexionAPI.AppServices
         {
             try
             {
-                // El endpoint correcto es "facts" y acepta el parámetro "number"
                 HttpResponseMessage httpResponse = await _httpClient.GetAsync($"facts?number={number}");
 
                 if (!httpResponse.IsSuccessStatusCode)
@@ -33,7 +31,6 @@ namespace Yafet_Flores_20251900155_ConexionAPI.AppServices
 
                 var apiResponse = await httpResponse.Content.ReadFromJsonAsync<dogs>();
 
-                // Retornamos la lista de hechos (facts)
                 return apiResponse?.facts ?? new List<string>();
             }
             catch (Exception ex)
